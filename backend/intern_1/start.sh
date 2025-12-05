@@ -2,8 +2,8 @@
 pwd
 tree -L 3
 python --version
-where python
-where pip
+which python
+which pip
 python manage.py makemigrations
 python manage.py migrate
-python manage.py runserver
+gunicorn backend.intern_1.wsgi:application --bind 0.0.0.0:$PORT
