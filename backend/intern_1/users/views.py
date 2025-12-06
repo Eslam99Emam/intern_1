@@ -79,14 +79,14 @@ class GetProfile(APIView):
         user["average"] = 0
         # print(*attempts)
 
+        if len(attempts) > 0:
         for attempt in attempts:
             print(f"percentage at {attempt}")
             print((attempt.Score / attempt.TotalScore) * 100)
             user["average"] += (attempt.Score / attempt.TotalScore) * 100
             print(f"current average {user['average']}")
 
-        print(user["average"])
-        if len(attempts) > 0:
+            print(user["average"])
             user["average"] = user["average"] / len(attempts)
         else:
             user["average"] = 0
