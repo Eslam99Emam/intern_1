@@ -86,7 +86,10 @@ class GetProfile(APIView):
             print(f"current average {user['average']}")
 
         print(user["average"])
-        user["average"] = user["average"] / len(attempts)
+        if len(attempts) > 0:
+            user["average"] = user["average"] / len(attempts)
+        else:
+            user["average"] = 0
         print(user["average"])
 
         return Response({"success": True, "message": "Profile Loaded", "data": user}, status=status.HTTP_200_OK)
