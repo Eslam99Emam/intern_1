@@ -36,7 +36,7 @@ class UserService:
     @staticmethod
     def verify_token(id):
         try:
-            user = User.objects.get(id=id)
+            User.objects.get(id=id)
             return id
         except:
             raise InvalidToken("Invalid or expired token")

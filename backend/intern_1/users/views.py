@@ -64,7 +64,7 @@ class VerifyTokenView(APIView):
             print(data)
             print(data["id"])
             user = UserService.verify_token(data["id"])
-            return Response({"success": True, "message": "Token Verified", "data" : { "id" : str(user.id)}}, status=status.HTTP_200_OK)
+            return Response({"success": True, "message": "Token Verified", "data" : { "id" : str(user)}}, status=status.HTTP_200_OK)
         except Exception as e :
             print(e)
             return Response({"success": False, "message": "Invalid or expired token"}, status=status.HTTP_401_UNAUTHORIZED)
