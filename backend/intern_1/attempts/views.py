@@ -28,7 +28,7 @@ class AttemptsHistory(APIView):
         return Response({"success": True, "message": "Assessment Loaded", "data": [{
             "title": a.AssessmentFk.Title,
             "score": a.Score,
-            "Total Score": a.TotalScore
+            "Total Score": a.TotalScore,
             "SubmittedAt": a.SubmittedAt
         } for a in attempts]}, status=status.HTTP_200_OK)
 

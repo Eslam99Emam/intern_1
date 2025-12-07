@@ -28,7 +28,7 @@ class History extends StatelessWidget {
                         mainAxisAlignment: .spaceBetween,
                         children: [
                           Text(
-                            "Hello,\nEslam Emam",
+                            "Reports",
                             style: Theme.of(context).textTheme.headlineLarge!
                                 .apply(fontWeightDelta: 2),
                           ),

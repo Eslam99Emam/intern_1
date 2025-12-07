@@ -11,7 +11,7 @@ class LoginDatasource {
   Future<Response> login({required String email, required String password}) async {
     log({"email": email, "password": password}.toString());
     final Response response = await dio.post(
-      '$API_DOMAIN/api/auth/login/',
+      '$API_URL/auth/login/',
       data: {
         "email": email,
         "password": password,

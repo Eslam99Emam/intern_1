@@ -26,7 +26,7 @@ class SignupDatasource {
       }.toString(),
     );
     final Response response = await dio.post(
-      '$API_DOMAIN/api/auth/signup/',
+      '$API_URL/auth/signup/',
       data: {
         "name": name,
         "email": email,

@@ -1,1 +1,1 @@
-final API_DOMAIN = "https://intern-1-25kn.onrender.com";
+final API_URL = "https://intern-1-25kn.onrender.com/api/v1";
