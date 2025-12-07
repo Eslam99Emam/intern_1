@@ -20,7 +20,6 @@ class GetAssessment(APIView):
             Getter
         '''
         token = jwt.decode(request.headers.get("Authorization").split(" ")[1], settings.SECRET_KEY, algorithms=["HS256"])
-        print(token)
         UserService.verify_token(token["id"])
         assessment = AssessmentService.get_assessment(id)
         return Response({"success": True, "message": "Assessment Loaded", "data": assessment}, status=status.HTTP_200_OK)
@@ -35,10 +34,7 @@ class CheckAssessment(APIView):
             Checker
         '''
         token = jwt.decode(request.headers.get("Authorization").split(" ")[1], settings.SECRET_KEY, algorithms=["HS256"])
-        print(token)
-        print(token["id"])
         user_id = UserService.verify_token(token["id"])
         data = AssessmentService.check_assessment(request.data)
         attempt = AttemptService.save_attempt(user_id, data)
-        print(attempt)
         return Response({"success": True, "message": "Assessment Loaded", "data": data}, status=status.HTTP_201_CREATED)

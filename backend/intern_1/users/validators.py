@@ -50,14 +50,11 @@ def validate_email(value: str):
 
     # Domain and local part length limits
     local_part, domain_part = value.rsplit("@", 1)
-    print("value")
-    print(value)
     if len(local_part) > 64:
         raise ValidationError("Local part is too long")
     if len(domain_part) > 255:
         raise ValidationError("Domain part is too long")
 
-    print(User.objects)
 
     if User.objects.filter(email=value).exists():
         raise EmailConflictError("Email already exists")

@@ -11,7 +11,6 @@ class UserService:
     @staticmethod
     def signup(data):
         try:
-            print(data)
             return User.objects.create(
                 name=data['name'],
                 email=data['email'],

@@ -50,8 +50,6 @@ class AssessmentService:
             .filter(AssessmentFk=assessment.AssessmentID)
             .prefetch_related('option_set')
         )
-        print("questions")
-        print(questions)
         json = {
             "AssessmentID": assessment.AssessmentID,
             "Title": assessment.Title,
@@ -62,8 +60,6 @@ class AssessmentService:
             "Total Score":0,
             "Questions": [],
         }
-        print("json")
-        print(json)
         for q in questions:
             json["Total Score"] += 1
             q_options = []
@@ -84,7 +80,4 @@ class AssessmentService:
                     )
                 if opt.OptionID == chosen_option_id and opt.isCorrect:
                     json["Score"] += 1
-        print("json after")
-        print(json)
-
         return json

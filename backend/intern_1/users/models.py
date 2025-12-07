@@ -9,8 +9,8 @@ class User(models.Model):
     email = models.CharField(unique=True, validators=[validate_email])
     hashed_password = models.CharField(max_length=255)
     phone = models.CharField(max_length=16, validators=[validate_phone])
-    role = models.CharField(choices=Role.choices)
-    grade = models.CharField(choices=Grade.choices)
+    role = models.CharField(choices=Role.choices, default=Role.STUDENT)
+    grade = models.CharField(choices=Grade.choices, default=Grade.G14)
 
     def __str__(self):
         return f"{self.id}. {self.name}"
