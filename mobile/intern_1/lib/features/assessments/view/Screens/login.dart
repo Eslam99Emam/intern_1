@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intern_1/features/auth/view/Providers/Login_Providers.dart';
-import 'package:intern_1/home.dart';
+import 'package:intern_1/features/auth/view/Screens/home.dart';
 import 'package:intern_1/main.dart';
 import 'package:intern_1/features/auth/view/Screens/signup.dart';
 import 'package:intern_1/utils/loading_layer.dart';

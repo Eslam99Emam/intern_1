@@ -17,16 +17,13 @@ class LoginRepositoryIMPL implements LoginRepository {
     );
 
     log(response!.data.toString());
+    log("response.data['token'].toString()");
+    log(response.data['token'].toString());
 
     final storage = const FlutterSecureStorage();
 
-    await storage.write(
-      key: 'token',
-      value: response.data['token'],
-      iOptions: IOSOptions(accessibility: .first_unlock),
-      aOptions: AndroidOptions(encryptedSharedPreferences: true),
-    );
-
-    return false;
+    await storage.write(key: 'token', value: response.data['token']);
+    
+    return true;
   }
 }
