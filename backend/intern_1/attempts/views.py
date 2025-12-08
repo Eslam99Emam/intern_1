@@ -26,6 +26,7 @@ class AttemptsHistory(APIView):
         token = jwt.decode(request.headers.get("Authorization").split(" ")[1], settings.SECRET_KEY, algorithms=["HS256"])
         attempts = AttemptService.get_attempts(token["id"])
         return Response({"success": True, "message": "Assessment Loaded", "data": [{
+            "id": a.AttemptID,
             "title": a.AssessmentFk.Title,
             "score": a.Score,
             "Total Score": a.TotalScore,
