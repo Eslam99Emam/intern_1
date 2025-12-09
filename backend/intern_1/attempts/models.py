@@ -7,9 +7,9 @@ class AttemptAssessment(models.Model):
     AttemptID = models.AutoField(primary_key=True)
     UserFk = models.ForeignKey(User, on_delete=models.CASCADE)
     AssessmentFk = models.ForeignKey(Assessment, on_delete=models.CASCADE)
-    SubmittedAt = models.DateTimeField(auto_now=True)
     Score = models.IntegerField(default=0)
     TotalScore = models.IntegerField(default=0)
+    SubmittedAt = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.UserFk.id}. {self.AssessmentFk.Title}"

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intern_1/features/auth/view/Screens/login.dart';
 import 'package:intern_1/features/core/view/providers/verify_token_providers.dart';
-import 'package:intern_1/features/auth/view/Screens/home.dart';
+import 'package:intern_1/features/assessments/view/Screens/home.dart';
 
 class MySplash extends ConsumerWidget {
   const MySplash({super.key});
@@ -24,13 +24,20 @@ class MySplash extends ConsumerWidget {
             log(stackTrace.toString());
             return MyLogin();
           },
-          loading: () => Column(
-            mainAxisSize: .min,
-            children: [
-              Image.asset('assets/logo.png'),
-              CircularProgressIndicator(),
-            ],
-          ),
+          loading: () {
+            return SafeArea(
+              child: Column(
+                mainAxisSize: .min,
+                children: [
+                  Spacer(),
+                  Image.asset('assets/logo.png'),
+                  CircularProgressIndicator(),
+                  Spacer(),
+                  Text('Loading...'),
+                ],
+              ),
+            );
+          },
         ),
       ),
     );

@@ -23,7 +23,53 @@ class AttemptService:
 
     @staticmethod
     def get_attempts(user_id):
-        return AttemptAssessment.objects.filter(UserFk_id=user_id)
+        attempts = (
+            AttemptAssessment.objects
+            .filter(UserFk_id=user_id)
+            .select_related("AssessmentFk", "UserFk")
+        )
+
+        final = []
+
+        # Loop on every attempt
+        for attempt in attempts:
+            # Load questions + options for this attempt
+            attempt_questions = (
+                AttemptQuestion.objects
+                .filter(AttemptFk=attempt)
+                .prefetch_related("attemptoption_set")
+            )
+
+            attempt_json = {
+                "AttemptID": attempt.AttemptID,
+                "AssessmentID": attempt.AssessmentFk.AssessmentID,
+                "Title": attempt.AssessmentFk.Title,
+                "Score": attempt.Score,
+                "Total Score": attempt.TotalScore,
+                "SubmittedAt": attempt.SubmittedAt,
+                "Questions": [],
+            }
+
+            for q in attempt_questions:
+                q_options = []
+                attempt_json["Questions"].append({
+                    "AttemptQuestionID": q.AttemptQuestionID,
+                    "Question": q.Question,
+                    "Options": q_options
+                })
+
+                # Add Options
+                for opt in q.attemptoption_set.all():
+                    q_options.append({
+                        "AttemptOptionID": opt.AttemptOptionID,
+                        "Option": opt.Option,
+                        "isCorrect": opt.isCorrect,
+                        "isChosen": opt.isChosen,
+                    })
+
+            final.append(attempt_json)
+
+        return final
 
     @staticmethod
     def get_attempts_per_month(user_id):

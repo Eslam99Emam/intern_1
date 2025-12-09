@@ -1,9 +1,9 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intern_1/features/auth/data/datascources/Login_Datasource.dart';
 import 'package:intern_1/features/auth/data/repositories/login_Repository.dart';
 import 'package:intern_1/features/auth/domain/usecases/Login.dart';
+import 'package:intern_1/utils/global_providers.dart';
 
 
 final loginEmailControllerProvider = Provider.autoDispose(
@@ -12,9 +12,6 @@ final loginEmailControllerProvider = Provider.autoDispose(
 final loginPasswordControllerProvider = Provider.autoDispose(
   (ref) => TextEditingController(),
 );
-
-final dioProvider = Provider.autoDispose((ref) => Dio());
-
 final loginDatasourceProvider = Provider(
   (ref) => LoginDatasource(dio: ref.read(dioProvider)),
 );

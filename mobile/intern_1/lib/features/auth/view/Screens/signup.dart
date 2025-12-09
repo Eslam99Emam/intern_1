@@ -6,10 +6,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intern_1/features/auth/data/models/user_model.dart';
 import 'package:intern_1/features/auth/domain/entities/User_Entity.dart';
 import 'package:intern_1/features/auth/view/Providers/Signup_Providers.dart';
-import 'package:intern_1/features/auth/view/Screens/home.dart';
+import 'package:intern_1/features/assessments/view/Screens/home.dart';
 import 'package:intern_1/features/auth/view/Screens/login.dart';
-import 'package:intern_1/main.dart';
+import 'package:intern_1/features/auth/view/Widgets/authpage.dart';
 import 'package:intern_1/utils/loading_layer.dart';
+import 'package:intern_1/utils/my_background.dart';
+import 'package:intern_1/utils/my_fields.dart';
 
 class SignUp extends ConsumerWidget {
   GlobalKey<FormState> formkey = GlobalKey<FormState>();

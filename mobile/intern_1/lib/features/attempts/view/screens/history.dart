@@ -3,8 +3,9 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:glass_kit/glass_kit.dart';
-import 'package:intern_1/features/core/view/providers/get_history_providers.dart';
-import 'package:intern_1/main.dart';
+import 'package:intern_1/features/attempts/view/providers/get_history_providers.dart';
+import 'package:intern_1/utils/my_background.dart';
+import 'package:intl/intl.dart';
 
 class History extends ConsumerWidget {
   const History({super.key});
@@ -116,7 +117,7 @@ class History extends ConsumerWidget {
                                         margin: EdgeInsets.all(16.0),
                                         child: Text(
                                           // 'Last Assessment at ${DateFormat.yMMMMd(data.first.datetime).replaceFirst(' ', ' at ')}',
-                                          'Last Assessment at ${data.first.datetime}',
+                                          'Last Assessment at ${data.first.submittedAt?.toLocal().toString().split(' ')[0]}',
                                           style: Theme.of(context)
                                               .textTheme
                                               .labelSmall!
@@ -147,28 +148,39 @@ class History extends ConsumerWidget {
                               physics: NeverScrollableScrollPhysics(),
                               itemCount: data.length,
                               itemBuilder: (context, index) {
-                                return Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 32.0,
-                                    vertical: 8.0,
-                                  ),
-                                  child: Card(
-                                    color: Colors.white.withAlpha(175),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: ListTile(
-                                        title: Text(
-                                          'Assessment ID #${data[index].id}',
-                                          style: Theme.of(
-                                            context,
-                                          ).textTheme.titleMedium,
-                                        ),
-                                        trailing: Text(
-                                          'Score\n${((data[index].score! / data[index].totalScore!) * 100).toStringAsFixed(1)}%',
-                                          textAlign: TextAlign.center,
-                                          style: Theme.of(
-                                            context,
-                                          ).textTheme.bodyLarge,
+                                return GestureDetector(
+                                  onTap: () {
+                                    log('${data[index].id}');
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 32.0,
+                                      vertical: 8.0,
+                                    ),
+                                    child: Card(
+                                      color: Colors.white.withAlpha(175),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: ListTile(
+                                          title: Text(
+                                            '${data[index].title}',
+                                            style: Theme.of(
+                                              context,
+                                            ).textTheme.titleMedium,
+                                          ),
+                                          subtitle: Text(
+                                            'Submitted At: ${DateFormat('d MMM yyyy', 'en_US').format(data[index].submittedAt!.toLocal())}',
+                                            style: Theme.of(
+                                              context,
+                                            ).textTheme.labelSmall,
+                                          ),
+                                          trailing: Text(
+                                            'Score\n${((data[index].score! / data[index].totalScore!) * 100).toStringAsFixed(1)}%',
+                                            textAlign: TextAlign.center,
+                                            style: Theme.of(
+                                              context,
+                                            ).textTheme.bodyLarge,
+                                          ),
                                         ),
                                       ),
                                     ),

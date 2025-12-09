@@ -29,7 +29,6 @@ class AssessmentService:
                         {
                             "OptionID": opt.OptionID,
                             "Option": opt.Option,
-
                         }
                         for opt in q.option_set.all()
                     ]
@@ -53,9 +52,6 @@ class AssessmentService:
         json = {
             "AssessmentID": assessment.AssessmentID,
             "Title": assessment.Title,
-            "Duration": str(assessment.Duration),
-            "Subject": assessment.Subject,
-            "Grade": assessment.Grade,
             "Score": 0,
             "Total Score":0,
             "Questions": [],

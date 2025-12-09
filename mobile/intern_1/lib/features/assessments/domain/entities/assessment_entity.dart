@@ -16,5 +16,5 @@ abstract class QuestionEntity {
 abstract class OptionsEntity {
   int? id;
   String? option;
-  bool? isChosen;
+  bool isChosen = false;
 }

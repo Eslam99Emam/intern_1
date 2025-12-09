@@ -1,1 +1,0 @@
-final API_URL = "https://intern-1-25kn.onrender.com/api/v1";

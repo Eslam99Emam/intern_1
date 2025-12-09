@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:intern_1/utils/Api_config.dart';
 
 class SignupDatasource {
   final Dio dio;
@@ -26,7 +25,7 @@ class SignupDatasource {
       }.toString(),
     );
     final Response response = await dio.post(
-      '$API_URL/auth/signup/',
+      '/auth/signup/',
       data: {
         "name": name,
         "email": email,

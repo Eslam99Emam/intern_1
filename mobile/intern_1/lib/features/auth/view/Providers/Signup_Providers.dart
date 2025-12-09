@@ -1,9 +1,9 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intern_1/features/auth/data/datascources/Signup_Datasource.dart';
 import 'package:intern_1/features/auth/data/repositories/signup_Repository.dart';
 import 'package:intern_1/features/auth/domain/usecases/Signup.dart';
+import 'package:intern_1/utils/global_providers.dart';
 
 final signupNameControllerProvider = Provider.autoDispose(
   (ref) => TextEditingController(),
@@ -24,8 +24,6 @@ final signupGradeControllerProvider = Provider.autoDispose(
 final signupPasswordControllerProvider = Provider.autoDispose(
   (ref) => TextEditingController(),
 );
-
-final dioProvider = Provider((ref) => Dio());
 
 final signupDatasourceProvider = Provider(
   (ref) => SignupDatasource(ref.read(dioProvider)),

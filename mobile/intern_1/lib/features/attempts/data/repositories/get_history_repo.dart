@@ -1,10 +1,10 @@
 import 'dart:developer';
 
-import 'package:intern_1/features/core/data/datasource/get_history_datasource.dart';
+import 'package:intern_1/features/attempts/data/datasources/get_history_datasource.dart';
 import 'package:intern_1/features/core/data/datasource/token_storage_ds.dart';
-import 'package:intern_1/features/core/data/model/assessment_model.dart';
-import 'package:intern_1/features/core/domain/entity/assessment_entity.dart';
-import 'package:intern_1/features/core/domain/repository/get_history_repo.dart';
+import 'package:intern_1/features/attempts/data/models/attempt_model.dart';
+import 'package:intern_1/features/attempts/domain/entities/attempt_entity.dart';
+import 'package:intern_1/features/attempts/domain/repositories/get_history_repo.dart';
 
 class GetHistoryRepoIMPL extends GetHistoryRepo {
   final GetHistoryDatasource _getHistoryDatasource;

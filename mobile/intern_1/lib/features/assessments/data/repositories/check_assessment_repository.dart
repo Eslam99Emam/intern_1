@@ -1,19 +1,38 @@
 import 'dart:developer';
-import 'package:dio/dio.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:intern_1/features/assessments/data/datascources/check_assessment_datasource.dart';
-import 'package:intern_1/features/assessments/domain/repositories/login_Repository.dart';
-import 'package:intern_1/features/auth/data/datascources/Login_Datasource.dart';
-import 'package:intern_1/features/auth/domain/repositories/login_Repository.dart';
+
+import 'package:intern_1/features/assessments/data/datasources/check_assessment_datasource.dart';
+import 'package:intern_1/features/assessments/domain/entities/assessment_entity.dart';
+import 'package:intern_1/features/assessments/domain/repositories/check_assessment_repository.dart';
+import 'package:intern_1/features/attempts/data/models/attempt_model.dart';
+import 'package:intern_1/features/attempts/domain/entities/attempt_entity.dart';
+import 'package:intern_1/features/core/data/datasource/token_storage_ds.dart';
 
 class CheckAssessmentRepositoryIMPL implements CheckAssessmentRepository {
   CheckAssessmentDatasource datasource;
+  TokenStorageDataSource token;
 
-  CheckAssessmentRepositoryIMPL(this.datasource);
+  CheckAssessmentRepositoryIMPL(this.datasource, this.token);
 
   @override
-  Future<bool> login({required String email, required String password}) async {
-    
-    return true;
+  Future<AttemptEntity> checkAssessment({
+    required AssessmentEntity assessment,
+  }) async {
+    final response = await datasource.checkAssessment(
+      assessment: assessment,
+      token: (await token.readToken()).toString(),
+    );
+
+    log("response!.data.toString()");
+    log("data : ${response.data["data"]}");
+
+    final AttemptEntity attempt_result = AttemptModel.fromJson(
+      response.data["data"],
+    );
+
+    log("attempt_result.toString()");
+    log(attempt_result.id.toString());
+    log(attempt_result.score.toString());
+
+    return attempt_result;
   }
 }

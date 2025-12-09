@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:intern_1/utils/Api_config.dart';
 
 class VerifyTokenDataSource {
   Dio dio;

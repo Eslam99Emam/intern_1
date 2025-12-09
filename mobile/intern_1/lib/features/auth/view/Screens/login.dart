@@ -4,10 +4,12 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intern_1/features/auth/view/Providers/Login_Providers.dart';
-import 'package:intern_1/features/auth/view/Screens/home.dart';
-import 'package:intern_1/main.dart';
+import 'package:intern_1/features/assessments/view/Screens/home.dart';
+import 'package:intern_1/features/auth/view/Widgets/authpage.dart';
 import 'package:intern_1/features/auth/view/Screens/signup.dart';
 import 'package:intern_1/utils/loading_layer.dart';
+import 'package:intern_1/utils/my_background.dart';
+import 'package:intern_1/utils/my_fields.dart';
 
 class MyLogin extends ConsumerWidget {
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
@@ -155,12 +157,13 @@ class MyLogin extends ConsumerWidget {
                           ),
                         );
                       } on DioException catch (e) {
+                        log((e.error).toString());
                         ref.read(loadingProvider.notifier).state = false;
-                        log(e.response!.data.toString());
+                        log((e.response?.data).toString());
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
-                              e.response!.data["message"].toString(),
+                              (e.response?.data["message"]).toString(),
                             ),
                             backgroundColor: Colors.red,
                             duration: Duration(seconds: 3),

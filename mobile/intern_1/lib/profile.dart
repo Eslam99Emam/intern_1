@@ -1,6 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:intern_1/main.dart';
+import 'package:intern_1/utils/my_background.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
