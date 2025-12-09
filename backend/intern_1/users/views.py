@@ -64,7 +64,7 @@ class GetProfile(APIView):
         user["average"] = 0
         if len(attempts) > 0:
             for attempt in attempts:
-                user["average"] += (attempt.Score / attempt.TotalScore) * 100
+                user["average"] += (attempt["Score"] / attempt["Total Score"]) * 100
             user["average"] = user["average"] / len(attempts)
         else:
             user["average"] = 0
