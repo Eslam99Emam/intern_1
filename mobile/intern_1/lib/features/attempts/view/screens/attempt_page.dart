@@ -6,8 +6,9 @@ import 'package:intl/intl.dart';
 
 class AttemptPage extends ConsumerWidget {
   final AttemptEntity attempt;
+  final bool home;
 
-  const AttemptPage({super.key, required this.attempt});
+  const AttemptPage({super.key, required this.attempt, this.home = false});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -22,6 +23,7 @@ class AttemptPage extends ConsumerWidget {
                 crossAxisAlignment: .center,
                 children: [
                   Row(
+                    mainAxisAlignment: .spaceBetween,
                     children: [
                       Text(
                         a.title!,
@@ -32,14 +34,16 @@ class AttemptPage extends ConsumerWidget {
                       ),
                       IconButton.filled(
                         onPressed: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const Home(),
-                            ),
-                          );
+                          home
+                              ? Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const Home(),
+                                  ),
+                                )
+                              : Navigator.pop(context);
                         },
-                        icon: const Icon(Icons.home),
+                        icon: Icon(home ? Icons.home : Icons.close),
                       ),
                     ],
                   ),
@@ -119,8 +123,10 @@ class AttemptPage extends ConsumerWidget {
                                           ],
                                         ),
                                         Icon(
-                                          option.isCorrect! || option.isChosen!
+                                          option.isCorrect!
                                               ? Icons.check
+                                              : option.isChosen!
+                                              ? Icons.close
                                               : null,
                                           color: option.isCorrect!
                                               ? Colors.green

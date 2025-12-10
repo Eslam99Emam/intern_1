@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:intern_1/features/attempts/view/providers/get_history_providers.dart';
+import 'package:intern_1/features/attempts/view/screens/attempt_page.dart';
 import 'package:intern_1/utils/my_background.dart';
 import 'package:intl/intl.dart';
 
@@ -116,7 +117,6 @@ class History extends ConsumerWidget {
                                       Container(
                                         margin: EdgeInsets.all(16.0),
                                         child: Text(
-                                          // 'Last Assessment at ${DateFormat.yMMMMd(data.first.datetime).replaceFirst(' ', ' at ')}',
                                           'Last Assessment at ${data.first.submittedAt?.toLocal().toString().split(' ')[0]}',
                                           style: Theme.of(context)
                                               .textTheme
@@ -150,7 +150,13 @@ class History extends ConsumerWidget {
                               itemBuilder: (context, index) {
                                 return GestureDetector(
                                   onTap: () {
-                                    log('${data[index].id}');
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            AttemptPage(attempt: data[index]),
+                                      ),
+                                    );
                                   },
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(

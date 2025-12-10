@@ -192,7 +192,8 @@ class AssessmentPage extends ConsumerWidget {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => AttemptPage(attempt: data),
+                            builder: (context) =>
+                                AttemptPage(attempt: data, home: true),
                           ),
                         );
 

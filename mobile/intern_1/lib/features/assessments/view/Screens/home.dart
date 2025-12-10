@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intern_1/features/assessments/view/Widgets/qr_reader.dart';
 import 'package:intern_1/features/attempts/view/screens/history.dart';
-import 'package:intern_1/profile.dart';
+import 'package:intern_1/features/core/view/screens/profile.dart';
 import 'package:intern_1/utils/loading_layer.dart';
 import 'package:intern_1/utils/my_background.dart';
 import 'package:pinput/pinput.dart';
